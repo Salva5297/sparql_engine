@@ -1,6 +1,7 @@
 const { executeQuery, execute } = require('./Services/execute_query_Service');
 const express = require('express');
 const morgan = require('morgan');
+const favicon = require('serve-favicon');
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.set('port', process.env.PORT || 5000);
 // Middlewares
 app.use(express.json());
 app.use(morgan('dev'));
+app.use(favicon(__dirname + '../../resources/favicon.ico'));
 
 // Routes
 app.get('/', (req, res) => {
