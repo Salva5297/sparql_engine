@@ -25,7 +25,7 @@ app.set('port', process.env.PORT || 5000);
 // Middlewares
 app.use(express.json());
 app.use(morgan('dev'));
-app.use(favicon(__dirname + '../../resources/favicon.ico'));
+app.use('/favicon.ico', express.static(__dirname + '../../resources/favicon.ico'));
 
 // Routes
 app.get('/', (req, res) => {
