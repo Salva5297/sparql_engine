@@ -12,6 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "@comunica/actor-init-sparql": "^1.22.3",
+    "@triply/yasgui": "^4.2.21",
+    "ejs": "^3.1.6",
     "express": "^4.17.2",
     "morgan": "^1.10.0",
     "serve-favicon": "^2.5.0"

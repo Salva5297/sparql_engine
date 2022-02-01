@@ -21,22 +21,33 @@ const banner = `
 // Settings
 app.set('appName', banner);
 app.set('port', process.env.PORT || 5000);
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
 
 // Middlewares
 app.use(express.json());
 app.use(morgan('dev'));
 app.use('/favicon.ico', express.static(__dirname + '../../resources/favicon.ico'));
+app.use(express.static(__dirname + '/public'));
 
 // Routes
+
 app.get('/', (req, res) => {
-    const query = `
+    res.render('index');
+});
+
+
+app.get('/sparql?:query', (req, res) => {
+    const query = req.query.query;
+    console.log(query);
+    /*const query = `
     select *
     from <http://localhost:8890/uuid:file:0b191257-5397-42b7-ba8d-0835f5bf3f51>
         {
         service <https://data.cogito.iot.linkeddata.es/sparql> {
         ?s a ?o.
         }
-    } limit 10`;
+    } limit 10`;*/
 
     executeQuery(query).then( result => {
         let response = "";
@@ -48,6 +59,9 @@ app.get('/', (req, res) => {
     });
         
 });
+
+
+
 
 
 // Execute Express API
